@@ -1,0 +1,6 @@
+<div *ngFor="let article of articles$ | async">
+  <p>{{article.title}}</p>
+  <div *ngFor="let storage of storage$ | async">
+    <img *ngIf="article.previewImage == storage.id" src="{{storage.filePath}}">
+  </div>
+</div>
