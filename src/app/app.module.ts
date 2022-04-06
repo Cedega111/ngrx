@@ -9,22 +9,30 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { entityConfig } from './entity-metadata';
-import { SharedModule } from './_shared/_shared.module';
+import { entityConfig, metaReducers } from './store/entity-metadata';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    StoreModule.forRoot({}, {}),
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule,
+    StoreModule.forRoot({}, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: false,
+      },
+    }),
     EffectsModule.forRoot([]),
     HttpClientModule,
-    EntityDataModule.forRoot(entityConfig),
+    EntityDataModule.forRoot({
+      entityMetadata: {},
+    }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
