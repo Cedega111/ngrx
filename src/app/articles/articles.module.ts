@@ -44,8 +44,8 @@ export class ArticlesModule {
               private articlesDataService: ArticlesDataService,
               ) {
 
-    eds.registerMetadataMap(entityMetadata);
-    entityDataService.registerService('Article', articlesDataService)    
+    this.eds.registerMetadataMap(entityMetadata);
+    this.entityDataService.registerService('Article', this.articlesDataService)    
   }
 
  }

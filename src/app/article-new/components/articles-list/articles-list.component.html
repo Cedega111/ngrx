@@ -1,0 +1,8 @@
+<article *ngFor="let article of articles$ | async">
+  <h4>
+    {{article.title}}
+  </h4>
+  <div>
+    <app-banner-item [article]="article"></app-banner-item>
+  </div>
+</article>
